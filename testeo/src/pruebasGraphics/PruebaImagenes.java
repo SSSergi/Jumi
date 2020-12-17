@@ -30,7 +30,7 @@ class MarcoImagen extends JFrame{
         
         add(milamina);
         
-        setExtendedState(Frame.MAXIMIZED_BOTH);
+        //setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 }
 
@@ -45,14 +45,16 @@ class LaminaConImagen extends JPanel{
         
         try{
             // O podemos instanciar la ruta de la imagen dentro del read()
-            imagen=ImageIO.read(new File("C:\\Users\\Sanitat\\Pictures\\Fondos de pantalla\\pjhin.png"));
+            imagen=ImageIO.read(new File("C:\\Users\\Usuario\\Pictures\\Fondos de pantalla\\subnautica.jpg"));
             
         }catch(IOException e){
             
             System.out.println("No se encuentra imagen.");
         }
         
-        g.drawImage(imagen, 5, 5, null);
+        g.drawImage(imagen, 0,0, null);
+        
+        g.copyArea(0, 0, 894, 894, 200, 200);
     }
     
     private Image imagen;

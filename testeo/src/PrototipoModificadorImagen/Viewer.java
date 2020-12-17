@@ -30,22 +30,27 @@ public class Viewer extends Canvas{
         return null;
     }
     
-    
-    public void paint(){
-        BufferStrategy bs;
+    public void paint(Graphics g){
         
-        bs=this.getBufferStrategy();
-        if (bs==null){
-            System.out.println("kgd");
-            return;
+        super.paint(g);
+        
+        // Se puede cargar la ruta de la imagen en la variable
+        //File miimagen=new File("C:\\Users\\Sanitat\\Pictures\\Fondos de pantalla\\pjhin.png");
+        
+        try{
+            // O podemos instanciar la ruta de la imagen dentro del read()
+            imagen=ImageIO.read(new File("C:\\Users\\Usuario\\Pictures\\Fondos de pantalla\\subnautica.jpg"));
+            
+        }catch(IOException e){
+            
+            System.out.println("No se encuentra imagen.");
         }
-
-        Graphics g=bs.getDrawGraphics();
-        g.drawImage(this.readImage(file), 100,100,100,100,null);
-        //this.;
-        //this.fireThree.paint(g);
-
-        bs.show();
-        g.dispose();
+        
+        g.drawImage(imagen, 0,0, null);
+        
+        g.copyArea(0, 0, 894, 894, 200, 200);
     }
+    
+    private Image imagen;
+    
 }

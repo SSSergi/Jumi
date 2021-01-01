@@ -36,6 +36,19 @@ class MarcoImagen extends JFrame{
 
 class LaminaConImagen extends JPanel{
     
+    /*Al meter el TRY CATCH dentro del constructor creamos la instancia con la imagen ya cargada en memoria, NO PINTADA, sino CARGADA en memoria*/
+    public LaminaConImagen(){
+        
+        try{
+            // O podemos instanciar la ruta de la imagen dentro del read()
+            imagen=ImageIO.read(new File("src\\BibliotecaImagenes\\subnautica.jpg"));
+            
+        }catch(IOException e){
+            
+            System.out.println("No se encuentra imagen.");
+        }
+    }
+    
     public void paintComponent(Graphics g){
         
         super.paintComponent(g);
@@ -43,18 +56,20 @@ class LaminaConImagen extends JPanel{
         // Se puede cargar la ruta de la imagen en la variable
         //File miimagen=new File("C:\\Users\\Sanitat\\Pictures\\Fondos de pantalla\\pjhin.png");
         
-        try{
-            // O podemos instanciar la ruta de la imagen dentro del read()
-            imagen=ImageIO.read(new File("C:\\Users\\Usuario\\Pictures\\Fondos de pantalla\\subnautica.jpg"));
-            
-        }catch(IOException e){
-            
-            System.out.println("No se encuentra imagen.");
-        }
+        int anchuraImagen=imagen.getWidth(this);
+        
+        int alturaImagen=imagen.getHeight(this);
         
         g.drawImage(imagen, 0,0, null);
         
-        g.copyArea(0, 0, 894, 894, 200, 200);
+        /*Con est ote montas básicamente un mosaico, haces que se repita la imagen, cuyo tamño a representar marcas con el 3 y 4 valores.*/
+        for(int i=0;i<300;i++){
+            
+            for(int j=0;j<200;j++){
+                
+                g.copyArea(0, 0, anchuraImagen, alturaImagen, anchuraImagen*i, alturaImagen*i);
+            }
+        }
     }
     
     private Image imagen;

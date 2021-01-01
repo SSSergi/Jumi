@@ -1,0 +1,3 @@
+pruebasGraphics.Lamina
+pruebasGraphics.MarcoConTexto
+pruebasGraphics.EscribiendoEnMarco

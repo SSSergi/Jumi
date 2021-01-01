@@ -1,0 +1,3 @@
+pruebasGraphics.TrabajandoColores
+pruebasGraphics.LaminaConColor
+pruebasGraphics.MarcoConColor

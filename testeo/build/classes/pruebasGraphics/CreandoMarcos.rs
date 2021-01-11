@@ -1,2 +1,0 @@
-pruebasGraphics.MiMarco
-pruebasGraphics.CreandoMarcos

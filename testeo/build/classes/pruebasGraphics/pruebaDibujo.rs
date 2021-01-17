@@ -1,0 +1,3 @@
+pruebasGraphics.MarcoConDibujos
+pruebasGraphics.LaminaConFiguras
+pruebasGraphics.pruebaDibujo

@@ -69,15 +69,15 @@ class LaminaConFiguras extends JPanel{
         
         Rectangle2D rectangulo=new Rectangle2D.Double(100,100,200,150);
         
-        g2d.draw(rectangulo);
+        //g2d.draw(rectangulo);
         
-        Ellipse2D elipse=new Ellipse2D.Double();
+        //Ellipse2D elipse=new Ellipse2D.Double();
         
-        elipse.setFrame(rectangulo);
+        //elipse.setFrame(rectangulo);
         
-        g2d.draw(elipse);
+        //g2d.draw(elipse);
         
-        g2d.draw(new Line2D.Double(100,100,300,250));
+        //g2d.draw(new Line2D.Double(100,100,300,250));
         
         double centroEnX=rectangulo.getCenterX();
         

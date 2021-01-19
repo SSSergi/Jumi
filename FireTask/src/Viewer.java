@@ -12,13 +12,13 @@ import javax.imageio.ImageIO;
 public class Viewer extends Canvas implements Runnable {
 
     private FireAnimation fireOne, fireTwo, fireThree;
-    private BufferedImage background;
+    //private BufferedImage background;
 
     public Viewer(int pixWidth, int pixHeight) {
         Dimension d = new Dimension(pixWidth, pixHeight);
         this.setPreferredSize(d);
 
-        this.loadBackground();
+        //this.loadBackground();
 
         this.createFireOne();
         //this.createFireTwo();
@@ -51,7 +51,7 @@ public class Viewer extends Canvas implements Runnable {
 
     private void createFireOne() {
         // Crear la paleta de colores para el fuego
-   FirePalette fp = new FirePalette();
+        FirePalette fp = new FirePalette();
         fp.addTargetColor(new Color(0, 0, 0, 0), 0); // Negro
         fp.addTargetColor(new Color(0, 0, 0, 0), 80); // Negro
         fp.addTargetColor(new Color(200, 40, 0, 16), 115); // Rojo
@@ -91,7 +91,7 @@ public class Viewer extends Canvas implements Runnable {
         this.fireTwo.setPosX(215);
         this.fireTwo.setPosY(410);
     }
-
+/*
     private void loadBackground() {
         try {
             this.background = ImageIO.read(new File("bg.jpg"));
@@ -102,7 +102,7 @@ public class Viewer extends Canvas implements Runnable {
             System.err.println(e);
         }
     }
-
+*/
     private void paint() {
         BufferStrategy bs;
 
@@ -113,7 +113,7 @@ public class Viewer extends Canvas implements Runnable {
         }
 
         Graphics g = bs.getDrawGraphics();
-        g.drawImage(this.background, 0, 0, 512, 512, null);
+        //g.drawImage(this.background, 0, 0, 512, 512, null);
         //this.fireTwo.paint(g);
         this.fireOne.paint(g);
         this.fireThree.paint(g);

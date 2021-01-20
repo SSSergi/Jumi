@@ -1,7 +1,5 @@
 package Pelota;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -19,6 +17,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+
 public class Juego //simulacion
 {
 public static void main(String[] args) 
@@ -43,53 +43,52 @@ Color color=Color.GREEN;
 Rectangle2D limites;
 
 
-public Pelota(Color color)
-{
-this.color=color;
-x=(int)(Math.random()*200);
-y=(int)(Math.random()*200);
+public Pelota(Color color){
+    this.color=color;
+    x=(int)(Math.random()*200);
+    y=(int)(Math.random()*200);
 }
-public Pelota(Color color,int diametro)
-{
-TAMX=diametro;
-TAMY=diametro;
-masa=diametro*10;
-this.color=color;
-x=(int)(Math.random()*200);
-y=(int)(Math.random()*200);
+
+public Pelota(Color color,int diametro){
+
+    TAMX=diametro;
+    TAMY=diametro;
+    masa=diametro*10;
+    this.color=color;
+    x=(int)(Math.random()*200);
+    y=(int)(Math.random()*200);
 }
-public Pelota()
-{
-x=(int)(Math.random()*200);
-y=(int)(Math.random()*200);
+
+public Pelota(){
+    
+    x=(int)(Math.random()*200);
+    y=(int)(Math.random()*200);
 }
+
 // Mueve la pelota invirtiendo posición si choca con límites
-public void mueve_pelota(Rectangle2D limites)
-{
-this.limites=limites;
-x=dx+x;
-y=dy+y;
-if(x+TAMX>=limites.getMaxX())
-{
-x=limites.getMaxX() - TAMX;
-dx=-dx;
+public void mueve_pelota(Rectangle2D limites){
+    
+    this.limites=limites;
+    x=dx+x;
+    y=dy+y;
+    if(x+TAMX>=limites.getMaxX()){
+        x=limites.getMaxX() - TAMX;
+        dx=-dx;
+    }
+    if(y + TAMY>=limites.getMaxY()){
+        y=limites.getMaxY()-TAMY;
+        dy=-dy;
+    }
+    if(x<limites.getMinX()){
+        x=limites.getMinX();
+        dx=-dx;
+    }
+    if(y<limites.getMinY()){
+        y=limites.getMinY();
+        dy=-dy;
+    }
 }
-if(y + TAMY>=limites.getMaxY())
-{
-y=limites.getMaxY()-TAMY;
-dy=-dy;
-}
-if(x<limites.getMinX())
-{
-x=limites.getMinX();
-dx=-dx;
-}
-if(y<limites.getMinY())
-{
-y=limites.getMinY();
-dy=-dy;
-}
-}
+
 //Forma de la pelota en su posición inicial
 public Ellipse2D getShape()
 {
@@ -141,21 +140,17 @@ public void setDy(double desplazamientoy)
     {  
      dy=desplazamientoy;
     }
-public static boolean choque(Pelota pelota1,Pelota pelota2)
-     {
-     double x1=pelota1.getX();
-double y1=pelota1.getY();
-float radio1=pelota1.getRadio();
-double x2=pelota2.getX();
-double y2=pelota2.getY();
-float radio2=pelota2.getRadio();
-if((Math.pow((x2-x1), 2)+Math.pow((y2-y1), 
-2))<=Math.pow((radio1+radio2),2))
-     {
-return true;
-     }
-else
-return false;
+public static boolean choque(Pelota pelota1,Pelota pelota2){
+    double x1=pelota1.getX();
+    double y1=pelota1.getY();
+    float radio1=pelota1.getRadio();
+    double x2=pelota2.getX();
+    double y2=pelota2.getY();
+    float radio2=pelota2.getRadio();
+    if((Math.pow((x2-x1), 2)+Math.pow((y2-y1), 2))<=Math.pow((radio1+radio2),2)){
+        return true;
+    }else
+        return false;
     }
 }
 class LaminaPelota extends JPanel
@@ -282,7 +277,7 @@ HiloPelota hilo=new HiloPelota(pelota,lamina);
 hilo.start();
 }
 }
-class HiloPelota extends Thread//implements Runnable
+class HiloPelota extends Thread implements Runnable
 {
     private Pelota pelota;
     private static LaminaPelota lamina;

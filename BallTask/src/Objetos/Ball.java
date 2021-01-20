@@ -10,9 +10,9 @@ public class Ball extends JPanel{
     // Color se hace con 3 atributos, 1 para Red, 1 para Green y 1 para Blue. Los 3 son Ints, y en dentro del constructor meteremos randoms en estas variables, para que se pueda generar así un color diferente.
     
     // Variables para formar un color
-    int red;
-    int green;
-    int blue;
+    double red=Math.random()*(0-255)+256;
+    double green=Math.random()*(0-255)+256;
+    double blue=Math.random()*(0-255)+256;
     
     double posX=Math.random()*(0-1960)+1961;
     double posY=Math.random()*(0-1040)+1041;
@@ -29,28 +29,67 @@ public class Ball extends JPanel{
         this.blue=blue;
         this.radio=radio;
         this.diametro=diametro;
+        this.posX=posX;
+        this.posY=posY;   
+    }
+
+    /* ----------------------------- GETTERS -------------------------------- */
+    public double getRed() {
+        return red;
+    }
+
+    public double getGreen() {
+        return green;
+    }
+
+    public double getBlue() {
+        return blue;
+    }
+
+    public double getPosX() {
+        return posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public double getRadio() {
+        return radio;
+    }
+
+    public double getDiametro() {
+        return diametro;
     }
     
-    public void paintComponent(Graphics g){
-        
-        super.paintComponent(g);
-        
-        Graphics2D circulo=(Graphics2D) g;
-        
-        radio=15.0;
-        
-        diametro=radio*2; 
-        
-        circulo.setStroke(new BasicStroke(5.f));
-        
-        circulo.setPaint(Color.blue);
-        
-        //radio=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el radio del círculo"));  **Esta línea sirve para introducir el valor del radio. Tenerlo en cuenta                   
-        
-        circulo.drawOval((int) posX, (int) posY, (int)diametro,(int) diametro);
-        
-        circulo.setPaint(Color.black);
-        
-        circulo.fillOval((int) posX, (int)  posY, (int) diametro, (int) diametro);
+    /* ------------------------------- SETTER ------------------------------- */
+
+    public void setRed(double red) {
+        this.red = red;
     }
+
+    public void setGreen(double green) {
+        this.green = green;
+    }
+
+    public void setBlue(double blue) {
+        this.blue = blue;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(double posY) {
+        this.posY = posY;
+    }
+
+    public void setRadio(double radio) {
+        this.radio = radio;
+    }
+
+    public void setDiametro(double diametro) {
+        this.diametro = diametro;
+    }
+    
 }

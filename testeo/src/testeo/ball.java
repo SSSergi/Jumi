@@ -33,6 +33,13 @@ class marco extends JFrame{
 
 class lamina extends JPanel{
     
+    double red=Math.random()*(0-255)+256;
+    double green=Math.random()*(0-255)+256;
+    double blue=Math.random()*(0-255)+256;
+    
+    double posX=Math.random()*(0-1960)+1961;
+    double posY=Math.random()*(0-1040)+1041;
+    
     private double radio=0.0;
     private double diametro;
     
@@ -65,11 +72,11 @@ class lamina extends JPanel{
         
         // radio=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el radio del círculo"));  **Esta línea sirve para introducir el valor del radio. Tenerlo en cuenta                   
         
-        circulo.drawOval(30, 30, (int)diametro,(int) diametro);
+        circulo.drawOval((int) posX, (int) posY, (int)diametro,(int) diametro);
         
-        circulo.setPaint(Color.CYAN);
+        circulo.setPaint(new Color((int) red, (int) green, (int) blue));
         
-        circulo.fillOval(30, 30, (int) diametro, (int) diametro);
+        circulo.fillOval((int) posX, (int)  posY, (int) diametro, (int) diametro);
         
         /*
         super.paintComponents(g);

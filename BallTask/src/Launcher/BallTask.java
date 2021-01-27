@@ -12,6 +12,7 @@ public class BallTask extends JFrame{
     
     private PanelControl.ControlPanel controlPanel;
     private Lamina.Viewer viewer;
+    private Objetos.Ball ball;
     private Thread viewerThread;
     
     public static void main(String[] args) {
@@ -23,17 +24,8 @@ public class BallTask extends JFrame{
         bt.setVisible(true);
     }
     
-    public BallTask(){  
+    public BallTask(){
         
-        this.viewer=new Viewer();
-        
-        this.controlPanel=new ControlPanel();
-        
-        this.createFrame();
-        
-        this.viewerThread = new Thread(this.viewer);
-        
-        this.viewerThread.start();
     }
     
     public void addViewerToPane(Container panel){
@@ -70,5 +62,18 @@ public class BallTask extends JFrame{
         setBounds(0, 0, 800, 600);
         
         setExtendedState(Frame.MAXIMIZED_BOTH);
+    }
+    
+    public void comienza_el_juego (){
+						
+        ball=new Objetos.Ball();
+                        
+        viewer.add(ball);
+            
+        Runnable r =new Viewer(ball, viewer);
+            
+        Thread t = new Thread(r);
+            
+        t.start();
     }
 }

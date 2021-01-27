@@ -5,22 +5,31 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
-public class Viewer extends Canvas{
+public class Viewer extends Canvas implements Runnable{
     
     private Objetos.Ball ball;
     private Objetos.BlackHole bhole;
+    private Viewer viewer;
+    private Component componente;
     
     
-    public Viewer(){       
+    public Viewer(Objetos.Ball bola, Component unComponente){
+        
+        ball = bola;
+        
+        componente = unComponente;
     }
  
 /*----------------------------------------------------------------------------*/
     
     public void run() {
-        this.createBufferStrategy(2);
         
-        this.paintComponent(g);
+        ball.mueve_pelota(componente.getBounds());
+        
+        viewer.paint(viewer.getGraphics());
+        
         try {
             Thread.sleep(5); // 
         } catch (InterruptedException ex) {
@@ -30,9 +39,9 @@ public class Viewer extends Canvas{
 /*----------------------------------------------------------------------------*/
     
     
-    public void paintComponent(Graphics g){
+    public void paint(Graphics g){
         
-        super.paintComponent(g);
+        super.paint(g);
         
         Graphics2D circulo=(Graphics2D) g; 
         
@@ -48,4 +57,11 @@ public class Viewer extends Canvas{
         
         circulo.fillOval((int) ball.getPosX(), (int) ball.getPosY(), (int) ball.getDiametro(),(int) ball.getDiametro());
     }
+    
+    public void add(Objetos.Ball b){
+		
+	pelotas.add(b);
+    }	
+    
+    private ArrayList<Objetos.Ball> pelotas=new ArrayList<Objetos.Ball>();
 }

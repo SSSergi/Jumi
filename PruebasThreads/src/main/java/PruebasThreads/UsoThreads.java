@@ -24,6 +24,36 @@ public class UsoThreads {
 }
 
 
+class PelotaThreads implements Runnable{
+    
+    public PelotaThreads(Pelota unaPelota, Component unComponente){
+        
+        pelota = unaPelota;
+        
+        componente = unComponente;
+    }
+    
+    public void run(){  //el método run no recibe argumentos
+        
+        for (int i=1; i<=3000; i++){
+				
+            pelota.mueve_pelota(componente.getBounds());
+            
+            componente.paint(componente.getGraphics());
+            
+            try {	
+                Thread.sleep(1);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(MarcoRebote.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    private Pelota pelota;
+    private Component componente;
+}
+
+
 //Movimiento de la pelota-----------------------------------------------------------------------------------------
 
 class Pelota{
@@ -79,9 +109,9 @@ class Pelota{
 	
 	private static final int TAMY=15;
 	
-	private double x=Math.random()*(0-600)+601;
+	private double x=Math.random()*(0-1920)+1921;
 	  
-	private double y=Math.random()*(0-600)+601;
+	private double y=Math.random()*(0-1080)+1081;
 	
 	private double dx=1;
 	
@@ -174,24 +204,16 @@ class MarcoRebote extends JFrame{
 	//AÃ±ade pelota y la bota 1000 veces
 	
 	public void comienza_el_juego (){
-		
-					
-			Pelota pelota=new Pelota();
-		    
-			lamina.add(pelota);
-			
-			for (int i=1; i<=3000; i++){
-				
-				pelota.mueve_pelota(lamina.getBounds());
-				
-				lamina.paint(lamina.getGraphics());
-                                
-                            try {	
-                                Thread.sleep(3);
-                            } catch (InterruptedException ex) {
-                                Logger.getLogger(MarcoRebote.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-			}
+						
+            Pelota pelota=new Pelota();
+                        
+            lamina.add(pelota);
+            
+            Runnable r =new PelotaThreads(pelota, lamina);
+            
+            Thread t = new Thread(r);
+            
+            t.start();
 	}
 	private LaminaPelota lamina;
 }

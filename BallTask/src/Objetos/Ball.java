@@ -40,6 +40,7 @@ public class Ball{
     }
 
     /* ----------------------------- GETTERS -------------------------------- */
+    
     public double getRed() {
         return red;
     }
@@ -134,6 +135,11 @@ public class Ball{
 			
 	}
 		
+    }
+    
+    public Ellipse2D getShape(){
+		
+        return new Ellipse2D.Double(posX,posY,tamX,tamY);	
     }
     
 }

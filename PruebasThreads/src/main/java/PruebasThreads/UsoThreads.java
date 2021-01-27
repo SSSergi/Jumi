@@ -105,9 +105,9 @@ class Pelota{
 		
 	}	
 	
-	private static final int TAMX=15;
+	private static final double TAMX=Math.random()*(0-75)+76;
 	
-	private static final int TAMY=15;
+	private static final double TAMY=Math.random()*(0-75)+76;
 	
 	private double x=Math.random()*(0-1920)+1921;
 	  
@@ -119,7 +119,7 @@ class Pelota{
 	
 	
 }
-
+    
 // LÃ¡mina que dibuja las pelotas----------------------------------------------------------------------
 
 

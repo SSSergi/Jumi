@@ -2,10 +2,12 @@ package Objetos;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 
-public class Ball{
+public class Ball implements Runnable{
     
     // Color se hace con 3 atributos, 1 para Red, 1 para Green y 1 para Blue. Los 3 son Ints, y en dentro del constructor meteremos randoms en estas variables, para que se pueda generar así un color diferente.
     
@@ -16,27 +18,25 @@ public class Ball{
     
     private double posX=Math.random()*(0-1960)+1961;
     private double posY=Math.random()*(0-1040)+1041;
+    
     private double movX=1;
     private double movY=1;
-    private final double tamX;
-    private final double tamY;
     
-    private double radio=Math.random()*(5-50)+51;
-    private double diametro=radio*2;
+    private double tamX=Math.random()*(10-80)+81;
+    private double tamY=tamX;
     
+    private Lamina.Viewer componente;
     
-    
+  
     public Ball(){
         
-        this.tamX = diametro;
-        this.tamY = diametro;
-        this.red=red;
-        this.green=green;
-        this.blue=blue;
-        this.radio=radio;
-        this.diametro=diametro;
-        this.posX=posX;
-        this.posY=posY;   
+        this.tamX = tamX;
+        this.tamY = tamY;
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.posX = posX;
+        this.posY = posY;   
     }
 
     /* ----------------------------- GETTERS -------------------------------- */
@@ -61,13 +61,23 @@ public class Ball{
         return posY;
     }
 
-    public double getRadio() {
-        return radio;
+    public double getMovX() {
+        return movX;
     }
 
-    public double getDiametro() {
-        return diametro;
+    public double getMovY() {
+        return movY;
     }
+
+    public double getTamX() {
+        return tamX;
+    }
+
+    public double getTamY() {
+        return tamY;
+    }
+
+     
     
     /* ------------------------------- SETTER ------------------------------- */
 
@@ -91,15 +101,23 @@ public class Ball{
         this.posY = posY;
     }
 
-    public void setRadio(double radio) {
-        this.radio = radio;
+    public void setMovX(double movX) {
+        this.movX = movX;
     }
 
-    public void setDiametro(double diametro) {
-        this.diametro = diametro;
+    public void setMovY(double movY) {
+        this.movY = movY;
     }
-    
-    
+
+    public void setTamX(double tamX) {
+        this.tamX = tamX;
+    }
+
+    public void setTamY(double tamY) {
+        this.tamY = tamY;
+    }
+  
+   
     public void mueve_pelota(Rectangle2D limites){
 		
 	posX = posX + movX;
@@ -138,8 +156,24 @@ public class Ball{
     }
     
     public Ellipse2D getShape(){
-		
+	
         return new Ellipse2D.Double(posX,posY,tamX,tamY);	
     }
     
+    public void run() {
+        
+        while (true) {            
+            
+            mueve_pelota(componente.getBounds());                     
+            
+            try {
+                
+                Thread.sleep(2);
+                
+            } catch (InterruptedException ex) {
+                
+                
+            }
+        }     
+    }
 }

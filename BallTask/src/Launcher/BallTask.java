@@ -4,6 +4,7 @@ package Launcher;
 import Lamina.Viewer;
 import PanelControl.ControlPanel;
 import Lamina.Viewer;
+import Objetos.Ball;
 import java.awt.Frame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,11 +31,7 @@ public class BallTask extends JFrame{
     
     public BallTask(){
         
-        createFrame();
-        
-        lamina = new Viewer(ball, lamina);
-        
-        add(lamina, BorderLayout.CENTER);
+        createFrame();                
         
         JPanel laminaBotones=new JPanel();
         
@@ -44,6 +41,14 @@ public class BallTask extends JFrame{
                 comienza_el_juego();
             }
         });
+        
+        ponerBoton(laminaBotones, "Salir", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evento) {
+                System.exit(0);
+            }
+        });
+        
         add(laminaBotones, BorderLayout.SOUTH);
     }
     /*
@@ -81,6 +86,10 @@ public class BallTask extends JFrame{
         setBounds(0, 0, 800, 600);
         
         setExtendedState(Frame.MAXIMIZED_BOTH);
+        
+        lamina = new Viewer();
+        
+        add(lamina, BorderLayout.CENTER);
     }
     
     public void ponerBoton(Container c, String nboton, ActionListener listener){
@@ -98,10 +107,16 @@ public class BallTask extends JFrame{
                         
         lamina.add(ball);
             
-        Runnable r =new Viewer(ball, lamina);
+        Runnable pintar =new Viewer();
+        
+        Runnable mover = new Ball();
             
-        Thread t = new Thread(r);
+        Thread tareaPintar = new Thread(pintar);
+        
+        Thread tareaMover = new Thread(mover);
             
-        t.start();
+        tareaMover.start();
+        
+        tareaPintar.start();              
     }
 }

@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Viewer extends Canvas implements Runnable{
     
@@ -14,26 +16,22 @@ public class Viewer extends Canvas implements Runnable{
     private Viewer viewer;
     private Component componente;
     
-    
-    public Viewer(Objetos.Ball bola, Component unComponente){
-        
-        ball = bola;
-        
-        componente = unComponente;
-    }
  
 /*----------------------------------------------------------------------------*/
     
     public void run() {
         
-        ball.mueve_pelota(componente.getBounds());
-        
-        viewer.paint(viewer.getGraphics());
-        
-        try {
-            Thread.sleep(5); // 
-        } catch (InterruptedException ex) {
-        }
+        do {
+            this.paint(this.getGraphics());
+            
+            try {
+                
+                Thread.sleep(2);
+                
+            } catch (InterruptedException ex) {
+                
+            }
+        } while (true);                                                                                     
     }
     
 /*----------------------------------------------------------------------------*/
@@ -51,19 +49,11 @@ public class Viewer extends Canvas implements Runnable{
         
         for(Objetos.Ball b: pelotas){
             
+            circulo.setPaint(new Color((int) b.getRed(), (int) b.getGreen(), (int) b.getBlue()));
+            
             circulo.fill(b.getShape());
+            
         }
-        //circulo.setStroke(new BasicStroke(5.f));
-        
-        //circulo.setPaint(Color.blue);
-        
-        //radio=Double.parseDouble(JOptionPane.showInputDialog("Ingrese el radio del círculo"));  **Esta línea sirve para introducir el valor del radio. Tenerlo en cuenta                   
-        
-        //circulo.drawOval((int) ball.getPosX(), (int) ball.getPosY(), (int) ball.getDiametro(),(int) ball.getDiametro());
-        
-        //circulo.setPaint(new Color((int) ball.getRed(), (int) ball.getGreen(), (int) ball.getBlue()));
-        
-        //circulo.fillOval((int) ball.getPosX(), (int) ball.getPosY(), (int) ball.getDiametro(),(int) ball.getDiametro());
     }	
     
     private ArrayList<Objetos.Ball> pelotas=new ArrayList<Objetos.Ball>();

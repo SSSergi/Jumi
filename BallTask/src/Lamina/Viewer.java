@@ -45,14 +45,13 @@ public class Viewer extends Canvas implements Runnable{
         
         super.paint(g);
         
-        Graphics2D circulo=(Graphics2D) g; 
+        Graphics2D circulo=(Graphics2D) g;
         
         for(Objetos.Ball b: pelotas){
             
             circulo.setPaint(new Color((int) b.getRed(), (int) b.getGreen(), (int) b.getBlue()));
             
             circulo.fill(b.getShape());
-            
         }
     }	
     

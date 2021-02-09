@@ -107,16 +107,16 @@ public class BallTask extends JFrame{
                         
         lamina.add(ball);
             
-        Runnable pintar =new Viewer();
+        Runnable r1 =new Viewer();
         
-        Runnable mover = new Ball();
+        Runnable r2 = new Ball();
             
-        Thread tareaPintar = new Thread(pintar);
+        Thread t1 = new Thread(r1);
         
-        Thread tareaMover = new Thread(mover);
+        Thread t2 = new Thread(r2);
             
-        tareaMover.start();
+        t1.start();
         
-        tareaPintar.start();              
+        t2.start();              
     }
 }

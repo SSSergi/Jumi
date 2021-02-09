@@ -107,7 +107,7 @@ class Pelota{
 	
 	private static final double TAMX=Math.random()*(0-75)+76;
 	
-	private static final double TAMY=Math.random()*(0-75)+76;
+	private static final double TAMY=TAMX;
 	
 	private double x=Math.random()*(0-1920)+1921;
 	  
@@ -139,7 +139,7 @@ class LaminaPelota extends JPanel{
 		Graphics2D g2=(Graphics2D)g;
 		
 		for(Pelota b: pelotas){
-			
+
 			g2.fill(b.getShape());
 		}
 		

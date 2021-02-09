@@ -64,6 +64,10 @@ class PelotaThreads implements Runnable{
 class Pelota{
 	
 	// Mueve la pelota invirtiendo posiciÃ³n si choca con lÃ­mites
+    
+        private double red=Math.random()*(0-255)+256;
+        private double green=Math.random()*(0-255)+256;
+        private double blue=Math.random()*(0-255)+256;
 	
 	public void mueve_pelota(Rectangle2D limites){
 		
@@ -108,7 +112,7 @@ class Pelota{
 		
 		return new Ellipse2D.Double(x,y,TAMX,TAMY);
 		
-	}	
+	}
 	
 	private static final double TAMX=Math.random()*(0-75)+76;
 	
@@ -145,7 +149,8 @@ class LaminaPelota extends JPanel{
 		
 		for(Pelota b: pelotas){
 			
-			g2.fill(b.getShape());
+			g2.draw(b.getShape());
+                        g2.fil
 		}
 		
 	}

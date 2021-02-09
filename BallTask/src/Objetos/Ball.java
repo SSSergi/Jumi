@@ -2,6 +2,7 @@ package Objetos;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -150,29 +151,31 @@ public class Ball implements Runnable{
 		posY=limites.getMaxY()- tamY;
 			
 		movY=-movY;
-			
 	}
-		
     }
     
-    public Ellipse2D getShape(){
+    public Ellipse2D getShape(double posX, double posY, double tamX, double tamY){
 	
         return new Ellipse2D.Double(posX,posY,tamX,tamY);	
     }
     
+    public void paint(Graphics2D g){
+        
+        Graphics2D circulo=(Graphics2D) g;
+            
+        circulo.setPaint(new Color((int) this.getRed(), (int) this.getGreen(), (int) this.getBlue()));
+            
+        circulo.fill(this.getShape(this.posX, this.posY, this.tamX, this.tamY));
+    }
+    
     public void run() {
         
-        while (true) {            
-            
-            mueve_pelota(componente.getBounds());                     
+        while (true) {           
+            mueve_pelota(componente.getBounds());
             
             try {
-                
                 Thread.sleep(2);
-                
             } catch (InterruptedException ex) {
-                
-                
             }
         }     
     }

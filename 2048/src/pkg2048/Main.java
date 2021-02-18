@@ -5,20 +5,37 @@ import java.util.Scanner;
 public class Main {
     
     private static matriz m=new matriz();
+    public static int [][] tablero=new int[4][4];
 
     public static void main(String[] args) {
-        m.fillBoard(m.tablero);
-        m.startGame(m.tablero);
-        m.mostrarMatriz(m.tablero);
-        m.moverCasillas(m.direccion());
-        m.mostrarMatriz(m.tablero);
+        
+        m.fillBoard(tablero);
+        m.startGame(tablero);
+        m.mostrarMatriz(tablero);
+        while(true){
+            int resultadoD=m.comprobarDerrota(tablero);
+            int resultadoV=m.comprobarVictoria(tablero);
+            
+            if(resultadoD==0){
+                System.err.println("PERDISTE PUTO!!! XD");
+                System.exit(0);
+            }    
+            
+            if(resultadoV==2048){
+                System.out.println("VENCISTE ALATRISTE!!!!!");
+                System.exit(0);
+            }
+            
+            m.moverCasillas(m.direccion(),tablero);
+            m.spawn2(tablero);
+            m.mostrarMatriz(tablero);
+        }
     }
 }
 
 class matriz{
     private int spawnEjeX;
     private int spawnEjeY;
-    public int [][] tablero=new int[4][4];
     
     
     public int direccion(){
@@ -28,37 +45,65 @@ class matriz{
         return res;
     }
     
-    public void moverCasillas(int instruc){
+    public void moverCasillas(int instruc, int[][] tablero){
         if(instruc==1){
-            HaciaAbajo(tablero);
+            HaciaArriba(tablero);
         }
         if(instruc==2){
             HaciaLaDerecha(tablero);
         }
+        if(instruc==3){
+            HaciaAbajo(tablero);
+        }
         if(instruc==4){
             HaciaLaIzquierda(tablero);
+        }
+        if(instruc==5){
+            System.exit(0);
         }
     }
     
     /* ------------------------ MOVIMIENTOS ------------------------ */
     
-    public void HaciaAbajo(int[][] tabla){
+    public void HaciaArriba(int[][] tabla){
         for (int j = 0; j < 4; j++) {
-            for (int i = 2; i >= 0; i--){
+            for (int i = 1; i < 4; i++) {
                 int k=i;
                 while (k>=1){
                     if(tabla[k][j]!=0){
-                        if(tabla[k][j+1]==0){
-                            tabla[k][j+1]=tabla[k][j];
+                        if(tabla[k-1][j]==0){
+                            tabla[k-1][j]=tabla[k][j];
                             tabla[k][j]=0;
                         }else{
-                            if(tabla[k][j]==tabla[k][j-1]){
-                                tabla[k][j-1]=tabla[k][j-1]*2;
+                            if(tabla[k][j]==tabla[k-1][j]){
+                                tabla[k-1][j]=tabla[k-1][j]*2;
                                 tabla[k][j]=0;
                             }
                         }
                     }
                     k--;
+                }
+            }
+        }
+    }
+    
+    public void HaciaAbajo(int[][] tabla){
+        for (int j = 0; j < 4; j++) {
+            for (int i = 2; i >= 0; i--){
+                int k=i;
+                while (k<=2){
+                    if(tabla[k][j]!=0){
+                        if(tabla[k+1][j]==0){
+                            tabla[k+1][j]=tabla[k][j];
+                            tabla[k][j]=0;
+                        }else{
+                            if(tabla[k][j] == tabla[k+1][j]){
+                                tabla[k+1][j] = tabla[k+1][j]*2;
+                                tabla[k][j] = 0;
+                            }
+                        }
+                    }
+                    k++;
                 }
             }
         }
@@ -131,6 +176,39 @@ class matriz{
         }
     }
     
+    /* ---------------------------- GENERAR 2 ----------------------------  */
+    
+    public int comprobarDerrota(int[][] tabla){
+        int casillasLibres=0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++){
+                if(tabla[i][j] == 0){
+                    casillasLibres=casillasLibres+1;
+                }
+            }
+        }
+        return casillasLibres;
+    }
+    
+    public int comprobarVictoria(int[][] tabla){
+        int[] listaValores=new int [16];
+        int maxNum=0;
+        int k=0;
+        
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                listaValores[k]=tabla[i][j];
+                k++;
+            }
+        }
+        for(int i=1;i < listaValores.length;i++){ 
+            if(listaValores[i] > maxNum){ 
+                maxNum = listaValores[i]; 
+            }
+        }
+        return maxNum;
+    }
+    
     public int generatorX(){
         double x=Math.random()*(0-3)+3;
         long x2=Math.round(x);
@@ -148,9 +226,13 @@ class matriz{
     public void spawn2(int[][] tabla){
         int x=generatorX();
         int y=generatorY();
+        
         if(tabla[x][y]==0){
+                
             tabla[x][y]=2;
-        }else if(tablero[x][y]!=0){
+                
+        }else if(tabla[x][y]!=0){
+                
             spawn2(tabla);
         }
     }
@@ -158,9 +240,5 @@ class matriz{
     public void startGame(int[][] tabla){
         spawn2(tabla);
         spawn2(tabla);
-    }
-    
-    public void GAME(){
-        
     }
 }

@@ -125,8 +125,6 @@ class Pelota{
 	private double dx=0.1;
 	
 	private double dy=0.1;
-	
-	
 }
     
 // LÃ¡mina que dibuja las pelotas----------------------------------------------------------------------
@@ -163,7 +161,7 @@ class LaminaPelota extends JPanel{
 
 class MarcoRebote extends JFrame{
 	
-	public MarcoRebote(){
+	public MarcoRebote(){ 
 		
 		setBounds(600,300,400,350);
 		

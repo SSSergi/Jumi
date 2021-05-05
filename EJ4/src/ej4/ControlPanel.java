@@ -1,4 +1,4 @@
-package ej4;
+ package ej4;
 
 import java.awt.Canvas;
 import java.awt.Container;
@@ -28,6 +28,7 @@ public class ControlPanel extends JPanel{
         
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c=new GridBagConstraints();
+        pane.setLocation(0,0);
         if(shouldFill){
             c.fill=GridBagConstraints.HORIZONTAL;
         }

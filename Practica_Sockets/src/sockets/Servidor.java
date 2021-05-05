@@ -7,9 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 
 public class Servidor {
@@ -27,7 +24,7 @@ class MarcoServidor extends JFrame implements Runnable{
     
     public MarcoServidor(){
         
-        setBounds(404,0,1080,1080);
+        setBounds(404,0,300,400);
         
         JPanel server_lamina = new JPanel();
         
@@ -55,15 +52,18 @@ class MarcoServidor extends JFrame implements Runnable{
             
             ServerSocket servidor = new ServerSocket(9999);
             
-            Socket misocket = servidor.accept();
+            while(true){
+                
+                Socket misocket = servidor.accept();
             
-            DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());
+                DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());
             
-            String mensaje_texto = flujo_entrada.readUTF();
+                String mensaje_texto = flujo_entrada.readUTF();
             
-            areaTexto.append("/n" + mensaje_texto);
+                areaTexto.append("\n" + mensaje_texto);
             
-            misocket.close();
+                misocket.close();
+            }
             
         } catch (IOException ex) {
             

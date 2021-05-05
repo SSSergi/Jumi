@@ -15,12 +15,12 @@ public class Main {
         while(true){
             int resultadoD=m.comprobarDerrota(tablero);
             int resultadoV=m.comprobarVictoria(tablero);
-            
-            if(resultadoD==0){
+            //METER UN MÉTODO QUE SEA PODERMOVER
+            if(resultadoD==0 /*&& poderMover==0*/){
                 System.err.println("PERDISTE PUTO!!! XD");
                 System.exit(0);
             }    
-            
+             
             if(resultadoV==2048){
                 System.out.println("VENCISTE ALATRISTE!!!!!");
                 System.exit(0);
@@ -62,6 +62,7 @@ class matriz{
             System.exit(0);
         }
     }
+    
     
     /* ------------------------ MOVIMIENTOS ------------------------ */
     

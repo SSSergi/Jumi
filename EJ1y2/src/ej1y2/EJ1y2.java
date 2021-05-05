@@ -1,6 +1,7 @@
 package EJ1y2;
 
 import java.util.*;
+import java.util.Arrays;
 
 public class EJ1y2 {
     
@@ -14,6 +15,8 @@ public class EJ1y2 {
     private int[][] A;
     private int[] Vector;
     private boolean validado;
+    
+    private ArrayList[] historial;
     
     public static void main(String[] args) {
         EJ1y2 ej2 = new EJ1y2();

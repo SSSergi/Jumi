@@ -7,9 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import java.net.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 
 public class Servidor {

@@ -10,9 +10,6 @@ import java.awt.event.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 
 public class Cliente {
@@ -71,7 +68,7 @@ class LaminaMarcoCliente extends JPanel{
             
             try {
 
-                Socket misocket = new Socket("192.168.1.118",9999);
+                Socket misocket = new Socket("192.168.56.1",9999);
                 
                 DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
                 

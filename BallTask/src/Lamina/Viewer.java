@@ -31,7 +31,7 @@ public class Viewer extends Canvas implements Runnable{
             } catch (InterruptedException ex) {
                 
             }
-        } while (true);                                                                                     
+        } while (true);
     }
     
 /*----------------------------------------------------------------------------*/

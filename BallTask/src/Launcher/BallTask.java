@@ -2,8 +2,6 @@ package Launcher;
 
 
 import Lamina.Viewer;
-import PanelControl.ControlPanel;
-import Lamina.Viewer;
 import Objetos.Ball;
 import java.awt.Frame;
 import java.awt.*;
@@ -31,7 +29,7 @@ public class BallTask extends JFrame{
     
     public BallTask(){
         
-        createFrame();                
+        createFrame();
         
         JPanel laminaBotones=new JPanel();
         
@@ -51,33 +49,12 @@ public class BallTask extends JFrame{
         
         add(laminaBotones, BorderLayout.SOUTH);
     }
-    /*
-    public void addViewerToPane(Container panel){
-        
-        GridBagConstraints c = new GridBagConstraints();
-
-        c.anchor = GridBagConstraints.NORTHWEST;
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 1;
-        c.gridy = 0;
-        c.weightx = 1F;
-        c.weighty = 0;
-        c.gridheight = 10;
-        c.gridwidth = 8;
-        panel.add(this.viewer, c);
-    }*/
     
     public void createFrame(){
         
         //Container panel;
         
-        setTitle("Balls and holes");    
-        
-        //this.setLayout(new GridBagLayout());
-        
-        //panel=this.getContentPane();
-        
-        //this.addViewerToPane(panel);
+        setTitle("Balls and holes");
         
         this.setVisible(true);
         

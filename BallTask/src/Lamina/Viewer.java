@@ -31,7 +31,7 @@ public class Viewer extends Canvas implements Runnable{
             } catch (InterruptedException ex) {
                 
             }
-        } while (true);                                                                                     
+        } while (true);
     }
     
 /*----------------------------------------------------------------------------*/
@@ -51,7 +51,7 @@ public class Viewer extends Canvas implements Runnable{
             
             circulo.setPaint(new Color((int) b.getRed(), (int) b.getGreen(), (int) b.getBlue()));
             
-            circulo.fill(b.getShape());
+            circulo.fill(circulo.getClipBounds());
         }
     }	
     

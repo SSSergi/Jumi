@@ -1,9 +1,22 @@
 package Objetos;
 
+import Launcher.BallTask;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPanel;
 
-public class Ball {
+public class Ball extends JPanel implements Runnable{
+    
+    private final Thread t;
+    
+    private ArrayList<Ball> pelotas=new ArrayList<Ball>();
+    
+    public static BallTask balltask;
     
     private double red=Math.random()*(0-255)+256;
     
@@ -31,8 +44,88 @@ public class Ball {
         this.green = green;
         this.blue = blue;*/
         this.posX = posX;
-        this.posY = posY;   
+        this.posY = posY;
+        
+        this.t = new Thread(this);
     }
+
+    /*---------------------------- GETTERS ----------------------------*/
+    
+    public double getRed() {
+        return red;
+    }
+
+    public double getGreen() {
+        return green;
+    }
+
+    public double getBlue() {
+        return blue;
+    }
+
+    public double getTamX() {
+        return tamX;
+    }
+
+    public double getTamY() {
+        return tamY;
+    }
+
+    public double getPosX() {
+        return posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public double getMovX() {
+        return movX;
+    }
+
+    public double getMovY() {
+        return movY;
+    }
+
+    /*---------------------------- SETTERS ----------------------------*/
+    
+    public void setRed(double red) {
+        this.red = red;
+    }
+
+    public void setGreen(double green) {
+        this.green = green;
+    }
+
+    public void setBlue(double blue) {
+        this.blue = blue;
+    }
+
+    public void setTamX(double tamX) {
+        this.tamX = tamX;
+    }
+
+    public void setTamY(double tamY) {
+        this.tamY = tamY;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(double posY) {
+        this.posY = posY;
+    }
+
+    public void setMovX(double movX) {
+        this.movX = movX;
+    }
+
+    public void setMovY(double movY) {
+        this.movY = movY;
+    }
+    
+    
     
 //Movimiento de la pelota-----------------------------------------------------------------------------------------
     
@@ -74,9 +167,41 @@ public class Ball {
 	
     //Forma de la pelota en su posición inicial
 	
-    public Ellipse2D getShape(){
-		
+    public Ellipse2D getShape(double posX, double posY, double tamX, double tamY){
+        
 	return new Ellipse2D.Double(posX,posY,tamX,tamY);
+    }
+    
+    public void add(Ball b){
 		
+        pelotas.add(b);
+    }
+    
+    public void paint(Graphics2D g){
+		
+        super.paintComponent(g);
+		
+        Graphics2D g2=(Graphics2D)g;
+        
+        g.fill(this.getShape(this.posX, this.posY, this.tamX, this.tamY));
+        /*
+        for(Ball b: pelotas){
+			
+            g2.fill(b.getShape());
+        }*/	
+    }
+    
+    /* -------- THREAD -------- */
+    
+    public void run(){
+        
+        try {
+            
+            this.t.sleep(balltask.delay);
+            
+        } catch (InterruptedException ex) {
+            
+            Logger.getLogger(Ball.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

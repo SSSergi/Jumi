@@ -8,16 +8,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Lanzador extends JFrame{
+/* MIRA DE ARREGLAR EL NEW VIEWER, QUE AHORA TIENE ENTRADA DE PARAMÉTROS!!!!!!! */
+
+public class BallTask extends JFrame{
     
     private Viewer lamina;
     
-    public Lanzador(){
+    public static final int delay = 6;
+    
+    public BallTask(){
         
         setBounds(700,340,600,500);
 		
 	setTitle ("Rebotes");
-		
+		 
 	lamina=new Viewer();
 		
 	add(lamina, BorderLayout.CENTER);
@@ -47,17 +51,12 @@ public class Lanzador extends JFrame{
     public static void main(String[] args) {
 	// TODO Auto-generated method stub
         
-	JFrame launcher=new Lanzador();
+	JFrame launcher=new BallTask();
 		
 	launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
 	launcher.setVisible(true);
     }
-    
-    
-    
-    
-    
     
     public void ponerBoton(Container c, String titulo, ActionListener oyente){
 		

@@ -7,12 +7,15 @@ import Objetos.Ball;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
-public class Lanzador extends JFrame{
+public class BallTask extends JFrame{
     
     private Viewer lamina;
     
-    public Lanzador(){
+    private ArrayList<Ball> pelotas=new ArrayList<Ball>();
+    
+    public BallTask(){
         
         setBounds(700,340,600,500);
 		
@@ -47,7 +50,7 @@ public class Lanzador extends JFrame{
     public static void main(String[] args) {
 	// TODO Auto-generated method stub
         
-	JFrame launcher=new Lanzador();
+	JFrame launcher=new BallTask();
 		
 	launcher.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -68,7 +71,7 @@ public class Lanzador extends JFrame{
         boton.addActionListener(oyente);
     }
     
-    public void crear_bola (){
+    public void crear_bola(){
 			
         Ball pelota=new Ball();
 			
@@ -104,6 +107,7 @@ class BallThreads implements Runnable{
                 Thread.sleep(4);
                 
             } catch (InterruptedException ex) {
+                System.err.println("Algo falla");
             }
         }
     }

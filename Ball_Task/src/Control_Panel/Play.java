@@ -2,7 +2,7 @@ package Control_Panel;
 
 
 import Lamina.Viewer;
-import Launcher.Lanzador;
+import Launcher.BallTask;
 import Objetos.Ball;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -22,7 +22,7 @@ public class Play extends JPanel{
 			
             public void actionPerformed(ActionEvent evento){
 				
-                Lanzador lanzador = new Lanzador();
+                BallTask lanzador = new BallTask();
                 
                 lanzador.crear_bola();
             }

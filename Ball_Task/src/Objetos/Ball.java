@@ -80,3 +80,35 @@ public class Ball {
 		
     }
 }
+
+class BallThreads implements Runnable{
+    
+    public BallThreads(Ball unaPelota, Component unComponente){
+        
+        pelota = unaPelota;
+        
+        componente = unComponente;
+    }
+    
+    public void run(){
+        
+        while(true){
+				
+            pelota.mueve_pelota(componente.getBounds());
+				
+            componente.paint(componente.getGraphics());
+            
+            try {
+                
+                Thread.sleep(4);
+                
+            } catch (InterruptedException ex) {
+                System.err.println("Algo falla");
+            }
+        }
+    }
+    
+    private Ball pelota;
+    
+    private Component componente;
+}

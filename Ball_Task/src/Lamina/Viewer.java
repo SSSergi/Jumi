@@ -10,23 +10,12 @@ import javax.swing.JPanel;
 
 public class Viewer extends JPanel{
     
+    private ArrayList<Ball> pelotas=new ArrayList<Ball>();
+    
     //Añadimos pelota a la lámina
 	
     public void add(Ball b){
 		
         pelotas.add(b);
-    }
-	
-    public void paintComponent(Graphics g){
-		
-        super.paintComponent(g);
-		
-        Graphics2D g2=(Graphics2D)g;
-		
-        for(Ball b: pelotas){
-			
-            g2.fill(b.getShape());
-        }	
     }	
-    private ArrayList<Ball> pelotas=new ArrayList<Ball>();
 }

@@ -15,6 +15,8 @@ public class BallTask extends JFrame{
     
     private ArrayList<Ball> pelotas=new ArrayList<Ball>();
     
+    public static final int delay = 4;
+    
     public BallTask(){
         
         setBounds(700,340,600,500);

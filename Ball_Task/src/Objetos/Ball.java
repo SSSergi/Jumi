@@ -1,9 +1,19 @@
 package Objetos;
 
+import Launcher.BallTask;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
-public class Ball {
+public class Ball implements Runnable{
+    
+    private Ball pelota;
+    
+    private final Thread t;
+    
+    public static BallTask balltask;
     
     private double red=Math.random()*(0-255)+256;
     
@@ -27,12 +37,94 @@ public class Ball {
         
         this.tamX = tamX;
         this.tamY = tamY;
-        /*this.red = red;
+        this.red = red;
         this.green = green;
-        this.blue = blue;*/
+        this.blue = blue;
         this.posX = posX;
         this.posY = posY;   
+        this.t = new Thread(this);
     }
+    
+    /* -------- GETTERS -------- */
+    
+    public Thread getT() {
+        return t;
+    }
+
+    public double getRed() {
+        return red;
+    }
+
+    public double getGreen() {
+        return green;
+    }
+
+    public double getBlue() {
+        return blue;
+    }
+
+    public double getTamX() {
+        return tamX;
+    }
+
+    public double getTamY() {
+        return tamY;
+    }
+
+    public double getPosX() {
+        return posX;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public double getMovX() {
+        return movX;
+    }
+
+    public double getMovY() {
+        return movY;
+    }
+    
+    /* -------- SETTERS -------- */
+
+    public void setRed(double red) {
+        this.red = red;
+    }
+
+    public void setGreen(double green) {
+        this.green = green;
+    }
+
+    public void setBlue(double blue) {
+        this.blue = blue;
+    }
+
+    public void setTamX(double tamX) {
+        this.tamX = tamX;
+    }
+
+    public void setTamY(double tamY) {
+        this.tamY = tamY;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(double posY) {
+        this.posY = posY;
+    }
+
+    public void setMovX(double movX) {
+        this.movX = movX;
+    }
+
+    public void setMovY(double movY) {
+        this.movY = movY;
+    }
+    
     
 //Movimiento de la pelota-----------------------------------------------------------------------------------------
     
@@ -71,44 +163,44 @@ public class Ball {
 			
 	}
     }
+    
 	
     //Forma de la pelota en su posición inicial
 	
-    public Ellipse2D getShape(){
+    public Ellipse2D getShape(double posX, double posY, double tamX, double tamY){
 		
 	return new Ellipse2D.Double(posX,posY,tamX,tamY);
 		
     }
-}
-
-class BallThreads implements Runnable{
     
-    public BallThreads(Ball unaPelota, Component unComponente){
+    public void crearBola(){
         
-        pelota = unaPelota;
-        
-        componente = unComponente;
+        this.t.start();
     }
     
+    public void paint(Graphics2D g){
+		
+        Graphics2D g2=(Graphics2D)g;
+        
+        g.fill(this.getShape(posX, posY, tamX, tamY));
+        
+        g.setColor(Color.BLACK);
+        /*for(Ball b: pelotas){
+            
+            g2.fill(b.getShape());
+        }*/	
+    }
+    
+    @Override
     public void run(){
         
-        while(true){
-				
-            pelota.mueve_pelota(componente.getBounds());
-				
-            componente.paint(componente.getGraphics());
+        try {
+            this.t.sleep(balltask.delay);
             
-            try {
-                
-                Thread.sleep(4);
-                
-            } catch (InterruptedException ex) {
-                System.err.println("Algo falla");
-            }
+        } catch (InterruptedException e) {
+            
+            Thread.currentThread().interrupt();
+            e.printStackTrace();
         }
     }
-    
-    private Ball pelota;
-    
-    private Component componente;
 }

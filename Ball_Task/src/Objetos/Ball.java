@@ -1,15 +1,13 @@
 package Objetos;
 
 import Launcher.BallTask;
+
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 public class Ball implements Runnable{
-    
-    private Ball pelota;
     
     private final Thread t;
     
@@ -41,7 +39,7 @@ public class Ball implements Runnable{
         this.green = green;
         this.blue = blue;
         this.posX = posX;
-        this.posY = posY;   
+        this.posY = posY;
         this.t = new Thread(this);
     }
     
@@ -179,23 +177,24 @@ public class Ball implements Runnable{
     }
     
     public void paint(Graphics2D g){
-		
-        Graphics2D g2=(Graphics2D)g;
+        
+        int intRed = (int) red;
+        
+        int intGreen = (int) green;
+        
+        int intBlue = (int) blue;
         
         g.fill(this.getShape(posX, posY, tamX, tamY));
         
-        g.setColor(Color.BLACK);
-        /*for(Ball b: pelotas){
-            
-            g2.fill(b.getShape());
-        }*/	
+        g.setColor(new Color(intRed, intGreen, intBlue));	
     }
     
     @Override
     public void run(){
         
         try {
-            this.t.sleep(balltask.delay);
+            
+            this.t.sleep(6);
             
         } catch (InterruptedException e) {
             
